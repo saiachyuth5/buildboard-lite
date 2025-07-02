@@ -7,26 +7,35 @@
 - Opens/updates a PR until CI is green
 - Escalates with label `needs-human` after 3 failed attempts
 
-## Quickstart
+## Quick Start
 
-1. **Clone & configure:**
-   ```bash
-   git clone https://github.com/youruser/buildboard-lite.git
-   cd buildboard-lite
-   cp .env.example .env
-   ```
+```bash
+# 1. Set up Python venv and install dependencies
+python -m venv .venv && .venv/Scripts/activate && pip install -r requirements.txt
 
-2. **Create a GitHub App:**  
-   Run the onboarding script:
-   ```bash
-   python scripts/init_app.py
-   ```
-   Follow the prompts and update `.env` with your App credentials.
+# 2. Run lint and tests
+make lint
+make test
 
-3. **Run locally:**
-   ```bash
-   docker compose up
-   ```
+# 3. Start the webhook server (http://localhost:8000)
+make dev
+
+# 4. Or run everything in Docker
+# (app + redis, hot-reloads on code changes)
+docker compose up
+```
+
+## Makefile Targets
+- `make dev`   – Start Flask webhook server (with reload)
+- `make lint`  – Format code with black and isort
+- `make test`  – Run all tests
+
+## Day-1 Complete Checklist
+- [x] GitHub App onboarding script
+- [x] Health endpoint and smoke test
+- [x] Docker Compose for app + Redis
+- [x] Linting and formatting setup
+- [x] Example .env and secure .gitignore
 
 ## Environment Variables
 

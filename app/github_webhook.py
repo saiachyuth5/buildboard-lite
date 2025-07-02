@@ -19,4 +19,8 @@ def webhook():
             return jsonify({"status": "queued"}), 202
     return jsonify({"status": "ignored"}), 200
 
+@app.route("/ping")
+def ping():
+    return "pong", 200
+
 # TODO: Add Prometheus metrics endpoint here (Day-2) 

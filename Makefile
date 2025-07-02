@@ -1,7 +1,10 @@
-.PHONY: dev test
+.PHONY: dev test lint
 
 dev:
-	FLASK_APP=app.github_webhook flask run --host=0.0.0.0 --port=5000
+	export FLASK_APP=app.github_webhook && flask run --reload --host=0.0.0.0 --port=8000
 
 test:
-	pytest -q 
+	pytest
+
+lint:
+	black . && isort . 

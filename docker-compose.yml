@@ -6,11 +6,13 @@ services:
     env_file:
       - .env
     ports:
-      - "5000:5000"
+      - "8000:8000"
     depends_on:
       - redis
     volumes:
-      - .:/app
+      - .:/usr/src/app
+    environment:
+      - FLASK_RUN_PORT=8000
   redis:
     image: redis:7
     ports:
